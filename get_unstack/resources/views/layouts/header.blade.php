@@ -37,7 +37,7 @@
 
 .la-icon{
 
-    margin-top:9px;
+    margin-top:10px;
 }
 
 </style>

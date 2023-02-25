@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 
@@ -14,42 +16,29 @@ class LoginController extends Controller
     {
         return view('layouts.login');
     }
-    // public function login(User $user,Request $request){
-    //     $request->validate([
-
-    //         'email'=>['required','email','unique:users,email'],
-    //         'password'=>['required','min:8']
-    //        ]);
-    //        echo "<pre>";
-    //        print_r($request);
-    //        return redirect('/home');
-    // }
-    public function login(LoginRequest $request)
+    public function login(Request $request)
     {
-        $credentials = $request->getCredentials();
+        // $value=$request['email'];
+        // $request->validate([
 
-        if(!Auth::validate($credentials)):
-            return redirect()->to('login')
-                ->withErrors(trans('auth.failed'));
-        endif;
+        //     'email'=>'required',
+        //     'password'=>'required'
+        //    ]);
+        //    $credentials=$request->only('email','password');
 
-        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+        //    if(Auth::attempt($credentials))
+        //    {
 
-        Auth::login($user);
+        //         return redirect('/admindashboard');
+        //    }
+        //    session()->regenerate();
+        //    Session::put('email',$value);
+        //    return redirect('/login')->withSuccess('login details are not matched');
+           echo "<pre>";
+           print_r($request);
+          // return redirect('/home');
+     }
 
-        return $this->authenticated($request, $user)->redirect('profile');
-    }
 
-    /**
-     * Handle response after user authenticated
-     *
-     * @param Request $request
-     * @param Auth $user
-     *
-     * @return \Illuminate\Http\Response
-     */
-    protected function authenticated(Request $request, $user)
-    {
-        return redirect()->intended();
-    }
+
 }

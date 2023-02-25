@@ -13,7 +13,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\AdmindashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,11 +44,15 @@ Route::get('/question', [App\Http\Controllers\QuestionController::class, 'index'
 Route::post('/question', [App\Http\Controllers\QuestionController::class, 'store']);
 Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('layouts.blog');
 Route::get('/allquestion', [App\Http\Controllers\AllquestionController::class, 'index'])->name('layouts.allquestion');
+Route::get('/questiontable', [App\Http\Controllers\AllquestionController::class, 'showquestions'])->name('admin.questiontable');
+
 Route::get('/post', [App\Http\Controllers\PostController::class, 'index'])->name('layouts.post');
 Route::get('/notification', [App\Http\Controllers\NotificationController::class, 'index'])->name('layouts.notification');
 Route::get('/referral', [App\Http\Controllers\ReferralController::class, 'index'])->name('layouts.referral');
 Route::get('/setting', [App\Http\Controllers\SettingController::class, 'index'])->name('layouts.setting');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('layouts.profile');
+Route::get('/admindashboard', [App\Http\Controllers\AdmindashboardController::class, 'index'])->name('admin.admindashboard');
+
 
 
 

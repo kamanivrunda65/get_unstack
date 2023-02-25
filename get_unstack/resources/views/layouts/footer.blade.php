@@ -89,6 +89,6 @@
 
 <!-- start back to top -->
 <div id="back-to-top" data-toggle="tooltip" data-placement="top" title="Return to top">
-<i class="la la-arrow-up"></i>
+<i class="la la-arrow-up la-icon" ></i>
 </div>
 <!-- end back to top -->

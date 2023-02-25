@@ -11,4 +11,8 @@ class AllquestionController extends Controller
     {
         return view('layouts.allquestion');
     }
+    public function showquestions()
+    {
+        return view('admin.questiontable');
+    }
 }
