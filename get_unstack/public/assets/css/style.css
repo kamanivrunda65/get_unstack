@@ -489,7 +489,7 @@ body {
     background: #3597a9 !important;
     background: -moz-linear-gradient(-45deg, #3597a9 0, #78e7f1 100%) !important;
     background: -webkit-linear-gradient(-45deg, #3597a9 0, #78e7f1 100%) !important;
-    background:  linear-gradient(135deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)!important;
+    background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%) !important;
 }
 
 .bg-vertical-gradient-gray {
@@ -521,12 +521,13 @@ body {
 }
 
 .bg-3 {
-    background-color: #f1c701!important;
-    color : #000;
+    background-color: #f1c701 !important;
+    color: #000;
 }
+
 .bg-3:hover {
     background-color: #bb601ff1 !important;
-    color:#fff
+    color: #fff
 }
 
 .bg-4 {
@@ -1220,8 +1221,8 @@ body {
 }
 
 .theme-btn {
-    background-color:   #1c58a0;
-    color: #000;
+    background-color: #1c58a0;
+    color: #fff;
     font-weight: 500;
     padding-right: 18px;
     padding-left: 18px;
@@ -1360,7 +1361,7 @@ body {
 }
 
 .theme-btn-white:hover {
-    background-color:  #0d233e;
+    background-color: #0d233e;
     color: #fff
 }
 
@@ -2992,6 +2993,7 @@ body {
     pointer-events: none;
     z-index: -1
 }
+
 .overlay1 {
     position: absolute;
     left: 0;

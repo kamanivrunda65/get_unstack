@@ -51,7 +51,7 @@
 <!--======================================
         START HERO AREA
 ======================================-->
-<section class="hero-area pattern-bg-2 bg-white shadow-sm overflow-hidden pt-30px pb-30px">
+<section class="hero-area pattern-bg-2 bg-white shadow-sm overflow-hidden pt-30px pb-30px" >
     <span class="stroke-shape stroke-shape-1"></span>
     <span class="stroke-shape stroke-shape-2"></span>
     <span class="stroke-shape stroke-shape-3"></span>

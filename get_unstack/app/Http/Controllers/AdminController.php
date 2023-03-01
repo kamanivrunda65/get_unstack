@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AllquestionController extends Controller
+class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        return view('layouts.allquestion');
+        return view('admin.admindashboard');
     }
-    public function showquestions()
+    public function questiontable()
     {
         return view('admin.questiontable');
     }

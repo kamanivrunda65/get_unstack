@@ -34,10 +34,17 @@
     background-color: rgb(127 136 151 / 34%);
     border: 0;
 }
-
+.header-side{
+    margin-right: -75px;
+    margin-left: -75px;
+}
 .la-icon{
 
     margin-top:10px;
+}
+.menu-bar>ul>li .dropdown-menu-item
+{
+left:-70px
 }
 
 </style>
@@ -71,20 +78,22 @@
         <header class="header-area bg-make menu-wrapper">
             <div class="container">
                 <div class="hero-content  ">
-                    <div class="row">
+                    <div class="row header-side">
                         <div class="col-lg-9">
                             <h2>
                                 <ul class="breadcrumb-list pt-20px pb-15  fs-15">
+                                    @guest
+                                        @if (Route::has('login'))
+                                            <a href="{{ route('login') }}"> <li class="text-white "><i class="la la-sign-in mr-1"></i>LOGIN |</li></a>
+                                        @endif
+                                        @if (Route::has('register'))
+                                            <a href="{{ route('register') }}"><li class="text-white "><i class="la la-plus-circle mr-1"></i>SIGN UP |</li></a>
+                                        @endif
+                                    @else
+                                        <a href="{{route('post')}}"><li class="text-white"><i class="la la-pencil mr-1"></i>ADD POST |</li></a>
 
-
-                                    <a href="{{route('layouts.post')}}"><li class="text-white"><i class="la la-pencil mr-1"></i>ADD POST |</li></a>
-
-
-                                    <a href="{{route('layouts.login')}}"> <li class="text-white "><i class="la la-sign-in mr-1"></i>LOGIN |</li></a>
-                                    <a href="{{route('layouts.signup')}}"><li class="text-white "><i class="la la-plus-circle mr-1"></i>SIGN UP |</li></a>
-
-
-                                    <a href="{{route('layouts.contact')}}"><li class="text-white "><i class="la la-phone mr-1"></i>CONTACT</li></a>
+                                    @endguest
+                                    <a href="{{ route('contact') }}"><li class="text-white "><i class="la la-phone mr-1"></i>CONTACT</li></a>
 
                                 </ul>
                             </h2>
@@ -112,7 +121,7 @@
     ======================================-->
     <header class="header-area bg-dark border-bottom border-bottom-gray">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row align-items-center header-side">
             <div class="col-lg-3">
                 <div class="logo-box">
                 <a href="/home" class="logo"><img src="assets/images/logo-dark.png" alt="logo"></a>
@@ -135,39 +144,44 @@
                     <nav class="menu-bar ml-auto pr-2 ">
                         <ul>
                             <li class="pl-30px" >
-                                <a href="{{route('layouts.home')}}" class="text-white">HOME</a>
+                                <a href="{{route('home')}}" class="text-white">HOME</a>
                             </li>
                             <li class="is-mega-menu pl-30px">
-                                <a href="{{route('layouts.question')}}" class="text-white">ASK QUESTION</a>
+                                <a href="{{route('askquestion')}}" class="text-white">ASK QUESTION</a>
 
                             </li>
                             <li class="is-mega-menu pl-30px">
-                                <a href="{{route('layouts.allquestion')}}" class=" text-white">QUESTIONS</a>
+                                <a href="{{route('allquestion')}}" class=" text-white">QUESTIONS</a>
 
                             </li>
                             <li class="pl-30px">
-                                <a href="{{route('layouts.blog')}}" class=" text-white">BLOG</a>
+                                <a href="{{route('blogs')}}" class=" text-white">BLOG</a>
                             </li>
-
-                            <li class="dropdown user-dropdown pl-30px">
+                            @if (Auth::check()) 
+                                <li class="dropdown user-dropdown pl-30px">
                                     <div class="media media-card media--card shadow-none mb-0 rounded-0 align-items-center bg-transparent">
                                         <div class="media-img media-img-xs flex-shrink-0 rounded-full ">
                                             <img src="assets/images/img4.jpg" alt="avatar" class="rounded-full ">
                                         </div>
                                     </div>
-                                <ul class="dropdown-menu-item text-dark">
-                                    <h6 class="dropdown-header">Hi, abc</h6>
+                                <ul class="profile-side dropdown-menu-item text-dark ">
+                                    <h6 class="dropdown-header">Hi, {{ Auth::user()->name }}</h6>
                                     <div class="dropdown-divider border-top-gray mb-0"></div>
 
-                                        <a class="dropdown-item" href="{{route('layouts.profile')}}"><li><i class="la la-user mr-2"></i> Profile</li></a>
-                                        <a class="dropdown-item" href="{{route('layouts.notification')}}"><li><i class="la la-bell mr-2"></i> Notifications</li></a>
-                                        <a class="dropdown-item" href="{{route('layouts.referral')}}"><li><i class="la la-user-plus mr-2"></i> Referrals</li></a>
-                                        <a class="dropdown-item" href="{{route('layouts.setting')}}"><li><i class="la la-gear mr-2"></i> Settings</li></a>
-                                        <a class="dropdown-item" href="logout"><li><i class="la la-power-off mr-2"></i> Log out</li></a>
-
-                                    </ul>
-                            </li>
-
+                                        <a class="dropdown-item" href="{{route('profile')}}"><li><i class="la la-user mr-2"></i> Profile</li></a>
+                                        <a class="dropdown-item" href="{{route('notification')}}"><li><i class="la la-bell mr-2"></i> Notifications</li></a>
+                                        <a class="dropdown-item" href="{{route('referral')}}"><li><i class="la la-user-plus mr-2"></i> Referrals</li></a>
+                                        <a class="dropdown-item" href="{{route('setting')}}"><li><i class="la la-gear mr-2"></i> Settings</li></a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                                        onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">
+                                            <li><i class="la la-power-off mr-2"></i> Log out</li></a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                </ul>
+                                </li>
+                            @endif
                         </ul><!-- end ul -->
                     </nav><!-- end main-menu -->
 
@@ -181,31 +195,35 @@
             <i class="la la-times la-icon"></i>
         </div><!-- end off-canvas-menu-close -->
         <ul class="generic-list-item off-canvas-menu-list pt-90px text-blue">
+        @guest
+            @if (Route::has('login'))
+                <li><a href="#"> <i class="la la-sign-in mr-1 fs-20 pb-20px"> LOGIN</i></a></li>
+            @endif
+            @if(Route::has('register'))
+                <li><a href="#"><i class="la la-plus-circle mr-1 fs-20 pb-20px"> SIGN UP</i></a></li>
+            @endif
+        @else
+            <li><a href="#"><i class="la la-pencil mr-1 fs-20 pb-20px">ADD POST</i></a></li>
+        @endguest
 
-            <li><a href="{{route('layouts.post')}}"><i class="la la-pencil mr-1 fs-20 pb-20px">ADD POST</i></a></li>
-
-
-            <li><a href="{{route('layouts.login')}}"> <i class="la la-sign-in mr-1 fs-20 pb-20px"> LOGIN</i></a></li>
-            <li><a href="{{route('layouts.signup')}}"><i class="la la-plus-circle mr-1 fs-20 pb-20px"> SIGN UP</i></a></li>
-
-            <li><a href="{{route('layouts.contact')}}"><i class="la la-phone mr-1 fs-20 pb-20px"> CONTACT</i></a></li>
+            <li><a href="{{ route('contact') }}"><i class="la la-phone mr-1 fs-20 pb-20px"> CONTACT</i></a></li>
         </ul>
             <hr>
         <ul class="generic-list-item off-canvas-menu-list text-blue ml-20px">
             <li  class="fs-20 pb-20px">
-                <a href="{{route('layouts.home')}}"><i class="la la-home mr-1 fs-20 "> HOME</i></a>
+                <a href="#"><i class="la la-home mr-1 fs-20 "> HOME</i></a>
 
             </li>
             <li class="fs-20 pb-20px">
-                <a href="{{route('layouts.question')}}"><i class="la la-edit mr-1 fs-20 "> ASK QUESTION</i></a>
+                <a href="{{route('askquestion')}}"><i class="la la-edit mr-1 fs-20 "> ASK QUESTION</i></a>
 
             </li>
             <li class="fs-20 pb-20px">
-                <a href="{{route('layouts.allquestion')}}"><i class="la la-question-circle mr-1 fs-20 "> QUESTIONS</i></a>
+                <a href="{{route('allquestion')}}"><i class="la la-question-circle mr-1 fs-20 "> QUESTIONS</i></a>
 
             </li>
             <li class="fs-20 pb-20px">
-                <a href="{{route('layouts.blog')}}"><i class="la la-comment mr-1 fs-20 "> BLOG</i></a>
+                <a href="{{route('blogs')}}"><i class="la la-comment mr-1 fs-20 "> BLOG</i></a>
 
             </li>
         </ul>
@@ -229,7 +247,7 @@
                 <div class="dropdown--menu shadow-none w-auto rounded-0">
                     <div class="dropdown-item-list">
 
-                        <a class="dropdown-item" href="{{route('layouts.notification')}}">
+                        <a class="dropdown-item" href="#">
                             <div class="media media-card media--card shadow-none mb-0 rounded-0 align-items-center bg-transparent">
                                 <div class="media-img media-img-sm flex-shrink-0">
                                     <img src="assets/images/img4.jpg" alt="avatar">
@@ -242,7 +260,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a class="dropdown-item" href="{{route('layouts.notification')}}">
+                        <a class="dropdown-item" href="#">
                             <div class="media media-card media--card shadow-none mb-0 rounded-0 align-items-center bg-transparent">
                                 <div class="media-img media-img-sm flex-shrink-0">
                                     <img src="assets/images/img4.jpg" alt="avatar">
@@ -256,17 +274,22 @@
                             </div>
                         </a>
                     </div>
-                    <a class="dropdown-item border-bottom-0 text-center btn-text fw-regular" href="{{route('layouts.notification')}}">View All Notifications <i class="la la-arrow-right icon ml-1"></i></a>
+                    <a class="dropdown-item border-bottom-0 text-center btn-text fw-regular" href="#">View All Notifications <i class="la la-arrow-right icon ml-1"></i></a>
                 </div>
             </div><!-- end tab-pane -->
             <div class="tab-pane fade" id="user-profile-menu" role="tabpanel" aria-labelledby="user-profile-menu-tab">
                 <div class="dropdown--menu shadow-none w-auto rounded-0">
                     <div class="dropdown-item-list">
-                        <a class="dropdown-item" href="{{route('layouts.profile')}}"><i class="la la-user mr-2"></i>Profile</a>
-                        <a class="dropdown-item" href="{{route('layouts.notification')}}"><i class="la la-bell mr-2"></i>Notifications</a>
-                        <a class="dropdown-item" href="{{route('layouts.referral')}}"><i class="la la-user-plus mr-2"></i>Referrals</a>
-                        <a class="dropdown-item" href="{{route('layouts.setting')}}"><i class="la la-gear mr-2"></i>Settings</a>
-                        <a class="dropdown-item" href="home"><i class="la la-power-off mr-2"></i>Log out</a>
+                        <a class="dropdown-item" href="{{route('profile')}}"><i class="la la-user mr-2"></i>Profile</a>
+                        <a class="dropdown-item" href="{{route('notification')}}"><i class="la la-bell mr-2"></i>Notifications</a>
+                        <a class="dropdown-item" href="{{route('referral')}}"><i class="la la-user-plus mr-2"></i>Referrals</a>
+                        <a class="dropdown-item" href="{{route('setting')}}"><i class="la la-gear mr-2"></i>Settings</a>
+                        <a class="dropdown-item" href="{{route('logout')}}"  onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                            <i class="la la-power-off mr-2"></i>Log out</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                     </div>
                 </div>
             </div><!-- end tab-pane -->

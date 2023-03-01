@@ -12,28 +12,27 @@
             </ul>
         </div><!-- end filters -->
         <form action="#" class="row">
+            @csrf
             <div class="col-lg-8">
                 <div class="card card-item">
                     <div class="card-body">
                         <div class="form-group">
                             <label class="fs-14 text-black fw-medium lh-20">Your Name</label>
-                            <input type="text" name="name" class="form-control form--control fs-14" placeholder="e.g. Alex smith">
+                            <input type="text" name="user_name" class="form-control form--control fs-14" placeholder="e.g. Alex smith">
                         </div><!-- end form-group -->
-                        <div class="form-group">
-                            <label class="fs-14 text-black fw-medium lh-20">Email <span class="text-gray">(Address never made public)</span></label>
-                            <input type="email" name="email" class="form-control form--control fs-14" placeholder="e.g. alexsmith@gmail.com">
-                        </div><!-- end form-group -->
+                        <<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                        
                         <div class="form-group">
                             <label class="fs-14 text-black fw-medium lh-20">Post Title</label>
-                            <input type="text" name="text" class="form-control form--control fs-14" placeholder="Please choose an appropriate title for the post.">
+                            <input type="text" name="blog_title" class="form-control form--control fs-14" placeholder="Please choose an appropriate title for the post.">
                         </div><!-- end form-group -->
                         <div class="form-group">
                             <label class="fs-14 text-black fw-medium lh-20">Post Content</label>
-                            <textarea name="message" class="form-control form--control user-text-editor" rows="6"></textarea>
+                            <textarea name="blog-content" class="form-control form--control user-text-editor" rows="6"></textarea>
                         </div><!-- end form-group -->
                         <div class="form-group">
                             <div class="custom-control custom-checkbox fs-14">
-                                <input type="checkbox" class="custom-control-input" id="agreeCheckBox" data-com.bitwarden.browser.user-edited="yes">
+                                <input type="checkbox" class="custom-control-input" id="agreeCheckBox" data-com.bitwarden.browser.user-edited="yes" required>
                                 <label class="custom-control-label custom--control-label" for="agreeCheckBox">By posting, you agreed to the <a href="terms-and-conditions.html" class="text-color hover-underline">Terms of Service </a> and <a href="privacy-policy.html" class="text-color hover-underline">Privacy Policy.</a></label>
                             </div>
                         </div>

@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
+
         Schema::create('questions', function (Blueprint $table) {
-            $table->id('question_id');
-            // $table->unSignedBigInteger('id');
-            // $table->foreign('id')->references('id')->on('users');
+            $table->bigIncrements('id');
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->text('question',200)->unique();
             $table->text('tags',50);
             $table->string('category',50);

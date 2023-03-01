@@ -34,7 +34,7 @@
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link" href="#" data-bs-toggle="dropdown" id="profileDropdown">
               <img src="assets/admin_assets/images/faces/face5.jpg" alt="profile"/>
-              <span class="nav-profile-name">Eugenia Mullins</span>
+              <span class="nav-profile-name">{{Auth::user()->name}}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -173,7 +173,7 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{route('admin.questiontable')}}">Questions</a></li>
+                <li class="nav-item"> <a class="nav-link" href="#">Questions</a></li>
 
                 <li class="nav-item"> <a class="nav-link" href="#">Blogs</a></li>
               </ul>

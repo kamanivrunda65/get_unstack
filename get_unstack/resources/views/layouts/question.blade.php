@@ -43,13 +43,14 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="card card-item">
-                <form method="post" class="card-body" action="{{url('/')}}/question">
+                <form method="post" class="card-body" id="questionform" onsubmit="postquestion()">
                     @csrf
                     <div class="input-box">
                         <label class="fs-14 text-black fw-medium mb-0">Question Title</label>
                         <p class="fs-13 pb-3 lh-20">Be specific and imagine you’re asking a question to another person</p>
                         <div class="form-group">
                             <input class="form-control form--control" type="text" name="question" placeholder="e.g. Is there an R function for finding the index of an element in a vector?">
+                            <input class="form-control form--control" type="hidden" name="user_id" value="{{Auth::user()->id}}" >
                         </div>
                     </div><!-- end input-box -->
                     <div class="input-box">
@@ -115,7 +116,7 @@
 
                         </div>
                         <div class="btn-box">
-                            <button type="submit" class="btn theme-btn">Publish your question</button>
+                            <button type="submit" class="btn theme-btn" >Publish your question</button>
                         </div>
                     </div>
                 </form>
@@ -236,3 +237,31 @@
      END QUESTION AREA
 ================================= -->
 @include('layouts.footer')
+<script>
+    function postquestion(){
+        event.preventDefault();     
+        let FormData = $("#questionform").serializeArray() ;  
+        console.log(FormData);
+        var result = {};
+        $.each(FormData, function() {
+            result[this.name] = this.value;   
+        });
+        //console.log(result);
+        let header_for_post = {
+            method: 'POST', 
+            header:{"Content-type" :"application/json"},
+            body: JSON.stringify(result) 
+        }
+        //console.log(header_for_post);
+         fetch("http://localhost:8000/api/postquestion", header_for_post).then(response => response.json()).then((res) => {
+            console.log(res);
+            // if(res.Code==1){
+                
+            //         window.location.href="http://localhost/Group_project/userstable";
+                
+            //  }else{
+            //          window.location.href="http://localhost/Group_project/edituser";
+            //  }
+         });
+    }
+</script>

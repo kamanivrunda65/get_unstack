@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/questiondata', [App\Http\Controllers\QuestionController::class, 'show']);
+Route::get('/deletequestion/{id}', [App\Http\Controllers\QuestionController::class, 'destroy']);
+Route::get('/postquestion', [App\Http\Controllers\QuestionController::class, 'store']);
+
+

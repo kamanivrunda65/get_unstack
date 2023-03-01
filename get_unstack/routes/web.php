@@ -1,19 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\IndexController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\SignupController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\AllquestionController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\ReferralController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AdmindashboardController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,31 +20,23 @@ use App\Http\Controllers\AdmindashboardController;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('layouts.home');
-Route::get('/home', [App\Http\Controllers\IndexController::class, 'index'])->name('layouts.home');
-Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('layouts.contact');
-Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name('layouts.login');
-Route::post('/login', [App\Http\Controllers\LoginController::class, 'login']);
-Route::get('/signup', [App\Http\Controllers\SignupController::class, 'index'])->name('layouts.signup');
-Route::post('/signup', [App\Http\Controllers\SignupController::class, 'store']);
-Route::get('/question', [App\Http\Controllers\QuestionController::class, 'index'])->name('layouts.question');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\IndexController::class, 'index'])->name('home');
+Route::get('/contact', [App\Http\Controllers\IndexController::class, 'contact'])->name('contact');
+Route::get('/question', [App\Http\Controllers\QuestionController::class, 'index'])->name('askquestion');
 Route::post('/question', [App\Http\Controllers\QuestionController::class, 'store']);
-Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('layouts.blog');
-Route::get('/allquestion', [App\Http\Controllers\AllquestionController::class, 'index'])->name('layouts.allquestion');
-Route::get('/questiontable', [App\Http\Controllers\AllquestionController::class, 'showquestions'])->name('admin.questiontable');
-
-Route::get('/post', [App\Http\Controllers\PostController::class, 'index'])->name('layouts.post');
-Route::get('/notification', [App\Http\Controllers\NotificationController::class, 'index'])->name('layouts.notification');
-Route::get('/referral', [App\Http\Controllers\ReferralController::class, 'index'])->name('layouts.referral');
-Route::get('/setting', [App\Http\Controllers\SettingController::class, 'index'])->name('layouts.setting');
-Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('layouts.profile');
-Route::get('/admindashboard', [App\Http\Controllers\AdmindashboardController::class, 'index'])->name('admin.admindashboard');
-
-
-
+Route::get('/allquestion', [App\Http\Controllers\QuestionController::class, 'allquestion'])->name('allquestion');
+Route::get('/questiondetail', [App\Http\Controllers\QuestionController::class, 'singlequestion'])->name('singlequestion');
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
+Route::get('/setting', [App\Http\Controllers\ProfileController::class, 'setting'])->name('setting');
+Route::get('/referral', [App\Http\Controllers\ProfileController::class, 'referral'])->name('referral');
+Route::get('/notification', [App\Http\Controllers\ProfileController::class, 'notification'])->name('notification');
+Route::get('/post', [App\Http\Controllers\BlogController::class, 'post'])->name('post');
+Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'blogs'])->name('blogs');
+Route::get('/blog', [App\Http\Controllers\BlogController::class, 'singleblog'])->name('singleblog');
+Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('admindashboard');
+Route::get('/questiontable', [App\Http\Controllers\AdminController::class, 'questiontable'])->name('questiontable');
 
 
-
-
-
+?>
