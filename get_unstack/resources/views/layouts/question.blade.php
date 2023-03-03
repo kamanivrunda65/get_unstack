@@ -43,13 +43,14 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="card card-item">
-                <form method="post" class="card-body" id="questionform" onsubmit="postquestion()">
-                    @csrf
+                <form method="post" class="card-body" id="questionform" route="{{url('/')}}/question">
+                    @csrf                    
                     <div class="input-box">
                         <label class="fs-14 text-black fw-medium mb-0">Question Title</label>
                         <p class="fs-13 pb-3 lh-20">Be specific and imagine you’re asking a question to another person</p>
                         <div class="form-group">
                             <input class="form-control form--control" type="text" name="question" placeholder="e.g. Is there an R function for finding the index of an element in a vector?">
+                            
                             <input class="form-control form--control" type="hidden" name="user_id" value="{{Auth::user()->id}}" >
                         </div>
                     </div><!-- end input-box -->
@@ -110,7 +111,7 @@
                     <div class="input-box pt-2">
                         <div class="form-group">
                             <div class="custom-control custom-checkbox fs-13 mb-1">
-                                <input type="checkbox" class="custom-control-input" id="notifiedMe" name="parmit">
+                                <input type="checkbox" class="custom-control-input" id="notifiedMe" name="parmit" required>
                                 <label class="custom-control-label custom--control-label" for="notifiedMe">Get notified by email when someone answers this question.</label>
                             </div>
 
@@ -236,8 +237,7 @@
 <!-- ================================
      END QUESTION AREA
 ================================= -->
-@include('layouts.footer')
-<script>
+{{-- <script>
     function postquestion(){
         event.preventDefault();     
         let FormData = $("#questionform").serializeArray() ;  
@@ -264,4 +264,6 @@
             //  }
          });
     }
-</script>
+</script> --}}
+@include('layouts.footer')
+

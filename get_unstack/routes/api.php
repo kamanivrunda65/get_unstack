@@ -21,5 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/questiondata', [App\Http\Controllers\QuestionController::class, 'show']);
 Route::get('/deletequestion/{id}', [App\Http\Controllers\QuestionController::class, 'destroy']);
 Route::get('/postquestion', [App\Http\Controllers\QuestionController::class, 'store']);
+Route::get('/userdata', [App\Http\Controllers\ProfileController::class, 'show']);
+
 
 

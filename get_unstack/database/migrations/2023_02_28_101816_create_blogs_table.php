@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->text('user_name',50)->unique();
+            $table->text('user_name',50);
            
             $table->text('blog_title',500);
             $table->text('blog_content',1000);

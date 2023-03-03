@@ -17,7 +17,7 @@
             </div><!-- end col-lg-8 -->
             <div class="col-lg-4">
                 <div class="hero-btn-box text-right py-3">
-                    <a href="your_profile.php" class="btn theme-btn theme-btn-outline theme-btn-outline-gray"><i class="la la-user mr-1"></i>View Profile</a>
+                    <a href="/profile" class="btn theme-btn theme-btn-outline theme-btn-outline-gray"><i class="la la-user mr-1"></i>View Profile</a>
                 </div>
             </div><!-- end col-lg-4 -->
         </div><!-- end row -->
@@ -58,17 +58,23 @@
                                 <div class="bg-gray p-3 rounded-rounded">
                                     <h3 class="fs-17">Edit your profile</h3>
                                 </div>
-                                <form method="post" class="pt-35px">
+                                <form method="post" class="pt-35px" route="{{url('/')}}/setting" enctype="multipart/form-data">
+                                    @csrf
+                                    
                                     <div class="settings-item mb-10px">
                                         <h4 class="fs-14 pb-2 text-gray text-uppercase">Public information</h4>
                                         <div class="divider"><span></span></div>
                                         <div class="row pt-4 align-items-center">
                                             <div class="col-lg-6">
                                                 <div class="edit-profile-photo d-flex flex-wrap align-items-center">
-                                                    <img src="assets/images/team.jpg" alt="user avatar" class="profile-img mr-4">
+                                                    @if(Auth::user()->profile_pic!=null)
+                                                    <img src="{{Storage::url(Auth::user()->profile_pic)}}"  class="profile-img mr-4">
+                                                    @else
+                                                    <img src="#"  class="profile-img mr-4">
+                                                    @endif
                                                     <div>
                                                         <div class="file-upload-wrap file--upload-wrap">
-                                                            <input type="file" name="files[]" class="multi file-upload-input" multiple>
+                                                            <input type="file" id="profile_pic" name="profile_pic" class="multi file-upload-input" >
                                                             <span class="file-upload-text"><i class="la la-photo mr-2"></i>Upload Photo</span>
                                                         </div>
                                                         <p class="fs-14">Maximum file size: 10 MB.</p>
@@ -79,21 +85,23 @@
                                                 <div class="input-box">
                                                     <label class="fs-13 text-black lh-20 fw-medium">Display name</label>
                                                     <div class="form-group">
-                                                        <input class="form-control form--control" type="text" name="text" value="Arden Smith">
+                                                        <input class="form-control form--control" type="hidden" name="user_id" id="name" value="{{Auth::user()->id}}">
+                                                        <input class="form-control form--control" type="text" name="name" id="name" value="{{Auth::user()->name}}">
                                                     </div>
                                                 </div>
                                                 <div class="input-box">
                                                     <label class="fs-13 text-black lh-20 fw-medium">Location</label>
                                                     <div class="form-group">
-                                                        <input class="form-control form--control" type="text" name="text" value="United States">
+                                                        <input class="form-control form--control" type="text" name="country" value="{{Auth::user()->country}}">
                                                     </div>
                                                 </div>
                                             </div><!-- end col-lg-6 -->
                                             <div class="col-lg-12">
                                                 <div class="input-box">
                                                     <label class="fs-15 text-black lh-20 fw-medium">About me</label>
+                                                    <p>{{Auth::user()->objective}}</p>
                                                     <div class="form-group">
-                                                        <textarea class="form-control form--control user-text-editor" rows="10" cols="40"></textarea>
+                                                        <textarea class="form-control form--control user-text-editor" rows="10" cols="40" name="objective" value="{{Auth::user()->objective}}"></textarea>
                                                     </div>
                                                 </div>
                                             </div><!-- end col-lg-12 -->
@@ -107,7 +115,7 @@
                                                 <div class="input-box">
                                                     <label class="fs-13 text-black lh-20 fw-medium">Website link</label>
                                                     <div class="form-group">
-                                                        <input class="form-control form--control pl-40px" type="text" name="text">
+                                                        <input class="form-control form--control pl-40px" type="text" name="web_link" value="{{Auth::user()->web_link}}">
                                                         <span class="la la-link input-icon"></span>
                                                     </div>
                                                 </div>
@@ -116,7 +124,7 @@
                                                 <div class="input-box">
                                                     <label class="fs-13 text-black lh-20 fw-medium">Twitter link</label>
                                                     <div class="form-group">
-                                                        <input class="form-control form--control pl-40px" type="text" name="text">
+                                                        <input class="form-control form--control pl-40px" type="text" name="twitter_link" value="{{Auth::user()->twitter_link}}">
                                                         <span class="la la-twitter input-icon"></span>
                                                     </div>
                                                 </div>
@@ -125,7 +133,7 @@
                                                 <div class="input-box">
                                                     <label class="fs-13 text-black lh-20 fw-medium">Facebook link</label>
                                                     <div class="form-group">
-                                                        <input class="form-control form--control pl-40px" type="text" name="text">
+                                                        <input class="form-control form--control pl-40px" type="text" name="facebook_link" value="{{Auth::user()->facebook_link}}">
                                                         <span class="la la-facebook input-icon"></span>
                                                     </div>
                                                 </div>
@@ -134,7 +142,7 @@
                                                 <div class="input-box">
                                                     <label class="fs-13 text-black lh-20 fw-medium">Instagram link</label>
                                                     <div class="form-group">
-                                                        <input class="form-control form--control pl-40px" type="text" name="text">
+                                                        <input class="form-control form--control pl-40px" type="text" name="instalink" value="{{Auth::user()->insta_link}}">
                                                         <span class="la la-instagram input-icon"></span>
                                                     </div>
                                                 </div>
@@ -143,32 +151,24 @@
                                                 <div class="input-box">
                                                     <label class="fs-13 text-black lh-20 fw-medium">Youtube link</label>
                                                     <div class="form-group">
-                                                        <input class="form-control form--control pl-40px" type="text" name="text">
+                                                        <input class="form-control form--control pl-40px" type="text" name="youtube" value="{{Auth::user()->youtube_link}}">
                                                         <span class="la la-youtube input-icon"></span>
                                                     </div>
                                                 </div>
                                             </div><!-- end col-lg-6 -->
                                             <div class="col-lg-6">
                                                 <div class="input-box">
-                                                    <label class="fs-13 text-black lh-20 fw-medium">Vimeo link</label>
-                                                    <div class="form-group">
-                                                        <input class="form-control form--control pl-40px" type="text" name="text">
-                                                        <span class="la la-vimeo input-icon"></span>
-                                                    </div>
-                                                </div>
-                                            </div><!-- end col-lg-6 -->
-                                            <div class="col-lg-12">
-                                                <div class="input-box">
                                                     <label class="fs-13 text-black lh-20 fw-medium">GitHub link</label>
                                                     <div class="form-group">
-                                                        <input class="form-control form--control pl-40px" type="text" name="text">
+                                                        <input class="form-control form--control pl-40px" type="text" name="github_link" value="{{Auth::user()->github_link}}">
                                                         <span class="la la-github input-icon"></span>
                                                     </div>
                                                 </div>
-                                            </div><!-- end col-lg-12 -->
+                                            </div><!-- end col-lg-6 -->
+                                           
                                             <div class="col-lg-12">
                                                 <div class="submit-btn-box pt-3">
-                                                    <button class="btn theme-btn" type="button">Save changes</button>
+                                                    <button class="btn theme-btn" type="submit">Save changes</button>
                                                 </div>
                                             </div><!-- end col-lg-12 -->
                                         </div><!-- end row -->
@@ -543,4 +543,5 @@
 <!-- ================================
          END USER DETAILS AREA
 ================================= -->
+
 @include('layouts.footer')

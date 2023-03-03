@@ -11,28 +11,38 @@
                 <li>Add new post</li>
             </ul>
         </div><!-- end filters -->
-        <form action="#" class="row">
+        <form method="post" class="row" route="{{url('/')}}/post" enctype="multipart/form-data">
             @csrf
             <div class="col-lg-8">
                 <div class="card card-item">
                     <div class="card-body">
                         <div class="form-group">
                             <label class="fs-14 text-black fw-medium lh-20">Your Name</label>
-                            <input type="text" name="user_name" class="form-control form--control fs-14" placeholder="e.g. Alex smith">
+                            <input type="text" name="user_name" class="form-control form--control fs-14" value="{{Auth::user()->name}}" readonly>
                         </div><!-- end form-group -->
-                        <<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                         
                         <div class="form-group">
                             <label class="fs-14 text-black fw-medium lh-20">Post Title</label>
                             <input type="text" name="blog_title" class="form-control form--control fs-14" placeholder="Please choose an appropriate title for the post.">
+                            @error('blog_title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         </div><!-- end form-group -->
                         <div class="form-group">
                             <label class="fs-14 text-black fw-medium lh-20">Post Content</label>
-                            <textarea name="blog-content" class="form-control form--control user-text-editor" rows="6"></textarea>
+                            <textarea name="blog_content" class="form-control form--control user-text-editor" rows="6"></textarea>
+                            @error('blog_content')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         </div><!-- end form-group -->
                         <div class="form-group">
                             <div class="custom-control custom-checkbox fs-14">
-                                <input type="checkbox" class="custom-control-input" id="agreeCheckBox" data-com.bitwarden.browser.user-edited="yes" required>
+                                <input type="checkbox" class="custom-control-input"  id="agreeCheckBox" data-com.bitwarden.browser.user-edited="yes" required>
                                 <label class="custom-control-label custom--control-label" for="agreeCheckBox">By posting, you agreed to the <a href="terms-and-conditions.html" class="text-color hover-underline">Terms of Service </a> and <a href="privacy-policy.html" class="text-color hover-underline">Privacy Policy.</a></label>
                             </div>
                         </div>
@@ -47,15 +57,28 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label class="fs-14 text-black fw-medium lh-20">Category</label>
-                            <select class="custom-select custom--select">
-                                <option value="0">Select a Category</option>
-                                <option value="1">Uncategorized</option>
-                                <option value="2">Work</option>
+                            <select class="custom-select custom--select" name="category">
+                                <option value="">Select a Category</option>
+                                <option value="Digital Design">Digital Design</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Business">Business</option>
+                                <option value="Project Management">Project Management</option>
+
                             </select>
+                            @error('category')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         </div><!-- end form-group -->
                         <div class="form-group mb-0">
                             <label class="fs-14 text-black fw-medium lh-20">Tags</label>
                             <input class="input-tags input--tags" type="text" name="tags" placeholder="e.g. javascript">
+                            @error('tags')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         </div><!-- end form-group -->
                     </div><!-- end card-body -->
                 </div>
@@ -64,7 +87,12 @@
                         <div class="form-group">
                             <label class="fs-14 text-black fw-medium lh-20">Featured Image</label>
                             <div class="file-upload-wrap file-upload-layout-2">
-                                <input type="file" name="files[]" class="multi file-upload-input" multiple>
+                                <input type="file" name="image" class="multi file-upload-input" multiple>
+                                @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                                 <span class="file-upload-text d-flex align-items-center justify-content-center"><i class="la la-cloud-upload mr-2 fs-24"></i>Drop files here or click to upload.</span>
                             </div>
                         </div><!-- end form-group -->

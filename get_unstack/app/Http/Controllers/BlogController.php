@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
 class BlogController extends Controller
 {
     public function post()
@@ -46,9 +47,36 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Blog $blog,Request $request)
     {
-        //
+        //dd($request->all());
+        // dd($request->file('image'));
+        // dd($file);
+        // echo "<pre>";
+        // print_r($request);
+        $request->validate([
+            'user_id'=>'required',
+             'user_name'=>'required',
+             'blog_title'=>'required',
+             'tags'=>'required',
+             'category'=>'required',
+            'blog_content'=>'required',
+            'image'=>['required','mimes:jpeg,jpg','min:1']
+         ]);
+         //dd($request->all());
+         $filename=time()."-blog.".$request->file('image')->getClientOriginalExtension();
+         $request->file('image')->storeAs('public/blog-images',$filename);
+         $file="public/blog-images/".$filename;
+         
+         $blog->user_id=$request->user_id;
+         $blog->user_name=$request->user_name;
+         $blog->blog_title=$request->blog_title;
+         $blog->blog_content=$request->blog_content;
+         $blog->tags=$request->tags;
+         $blog->image=$file;
+         $blog->category=$request->category;
+         $blog->save();
+         return redirect('/blogs');
     }
 
     /**

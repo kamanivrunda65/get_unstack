@@ -44,62 +44,62 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    //  public function store(Question $question,Request $request)
-    //  {
-    //      $request->validate([
-    //         'user_id'=>'required',
-    //          'question'=>'required',
-    //          'tags'=>'required',
-    //          'category'=>'required',
-    //          'discription'=>'required'
-    //      ]);
-    //      if($request->permit="on"){
-    //                 $permit="Y";
-    //             }else{
-    //                 $permit="N";
-    //             }
-    //      $question->user_id=$request->user_id;
-    //      $question->question=$request->question;
-    //      $question->tags=$request->tags;
-    //      $question->category=$request->category;
-    //      $question->discription=$request->discription;
-    //      $question->permit=$permit;
+     public function store(Question $question,Request $request)
+     {
+         $request->validate([
+            'user_id'=>'required',
+             'question'=>'required',
+             'tags'=>'required',
+             'category'=>'required',
+             'discription'=>'required'
+         ]);
+         if($request->permit="on"){
+                    $permit="Y";
+                }else{
+                    $permit="N";
+                }
+         $question->user_id=$request->user_id;
+         $question->question=$request->question;
+         $question->tags=$request->tags;
+         $question->category=$request->category;
+         $question->discription=$request->discription;
+         $question->permit=$permit;
  
-    //      $question->save();
-    //     //  echo "<pre>";
-    //     //  print_r($request->all());
-    //      return redirect('/allquestions');
-    //  }
+         $question->save();
+        //  echo "<pre>";
+        //  print_r($request->all());
+         return redirect('/allquestion');
+     }
 
 
-    public function store(Question $question,Request $request)
-    {
-        // $id=Auth::user()->name;
-        echo "<pre>";
-        print_r($request->all());
-        // $request->validate([
-        //     'question'=>'required',
-        //     'tags'=>'required',
-        //     'category'=>'required',
-        //     'discription'=>'required'
-        // ]);
-        // if($request->permit='on'){
-        //     $permit="1";
-        // }else{
-        //     $permit="2";
-        // }
-        // $question->user_id=$id;
-        // $question->question=$request->question;
-        // $question->tags=$request->tags;
-        // $question->category=$request->category;
-        // $question->discription=$request->discription;
-        // $question->permit=$permit;
+    // public function store(Question $question,Request $request)
+    // {
+    //     // $id=Auth::user()->name;
+    //     echo "<pre>";
+    //     print_r($request->all());
+    //     // $request->validate([
+    //     //     'question'=>'required',
+    //     //     'tags'=>'required',
+    //     //     'category'=>'required',
+    //     //     'discription'=>'required'
+    //     // ]);
+    //     // if($request->permit='on'){
+    //     //     $permit="1";
+    //     // }else{
+    //     //     $permit="2";
+    //     // }
+    //     // $question->user_id=$id;
+    //     // $question->question=$request->question;
+    //     // $question->tags=$request->tags;
+    //     // $question->category=$request->category;
+    //     // $question->discription=$request->discription;
+    //     // $question->permit=$permit;
 
-        //  echo $question->save();
-        // echo "<pre>";
-        // print_r($request->all());
-        // return redirect('/questions');
-    }
+    //     //  echo $question->save();
+    //     // echo "<pre>";
+    //     // print_r($request->all());
+    //     // return redirect('/questions');
+    // }
 
     /**
      * Display the specified resource.

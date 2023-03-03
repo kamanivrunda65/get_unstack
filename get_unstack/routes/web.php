@@ -30,9 +30,11 @@ Route::get('/allquestion', [App\Http\Controllers\QuestionController::class, 'all
 Route::get('/questiondetail', [App\Http\Controllers\QuestionController::class, 'singlequestion'])->name('singlequestion');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
 Route::get('/setting', [App\Http\Controllers\ProfileController::class, 'setting'])->name('setting');
+Route::post('/setting', [App\Http\Controllers\ProfileController::class, 'updateuser']);
 Route::get('/referral', [App\Http\Controllers\ProfileController::class, 'referral'])->name('referral');
 Route::get('/notification', [App\Http\Controllers\ProfileController::class, 'notification'])->name('notification');
 Route::get('/post', [App\Http\Controllers\BlogController::class, 'post'])->name('post');
+Route::post('/post', [App\Http\Controllers\BlogController::class, 'store']);
 Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'blogs'])->name('blogs');
 Route::get('/blog', [App\Http\Controllers\BlogController::class, 'singleblog'])->name('singleblog');
 Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('admindashboard');
