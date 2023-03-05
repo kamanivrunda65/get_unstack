@@ -146,8 +146,8 @@
             </div><!-- end sidebar -->
         </div><!-- end col-lg-4 -->
         <div class="col-lg-8">
-            <div class="row">
-                <div class="col-lg-6 responsive-column-half">
+            <div class="row" id="blog-data">
+                {{-- <div class="col-lg-6 responsive-column-half">
                     <div class="card card-item hover-y">
                         <a href="singleblog" class="card-img">
                             <img class="lazy" src="assets/images/img-loading.png" data-src="assets/images/img6.jpg" alt="Card image">
@@ -168,117 +168,8 @@
                             </div>
                         </div><!-- end card-body -->
                     </div><!-- end card -->
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-6 responsive-column-half">
-                    <div class="card card-item hover-y">
-                        <a href="singleblog" class="card-img">
-                            <img class="lazy" src="assets/images/img-loading.png" data-src="assets/images/img7.jpg" alt="Card image">
-                        </a>
-                        <div class="card-body pt-0">
-                            <a href="#" class="card-link">Project Management</a>
-                            <h5 class="card-title fw-medium"><a href="singleblog">What You Can Learn About Managing Projects</a></h5>
-                            <div class="media media-card align-items-center shadow-none p-0 mb-0 rounded-0 mt-4 bg-transparent">
-                                <a href="#" class="media-img media-img--sm d-block mr-2 rounded-full">
-                                    <img src="assets/images/img2.jpg" alt="avatar" class="rounded-full">
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="fs-14 fw-medium">By <a href="#">Kevin Martin</a></h5>
-                                    <small class="meta d-block lh-20">
-                                        <span>Feb 25, 2021</span>
-                                    </small>
-                                </div>
-                            </div>
-                        </div><!-- end card-body -->
-                    </div><!-- end card -->
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-6 responsive-column-half">
-                    <div class="card card-item hover-y">
-                        <a href="singleblog" class="card-img">
-                            <img class="lazy" src="assets/images/img-loading.png" data-src="assets/images/img8.jpg" alt="Card image">
-                        </a>
-                        <div class="card-body pt-0">
-                            <a href="#" class="card-link">Business</a>
-                            <h5 class="card-title fw-medium"><a href="singleblog">Open space – new trend in office design</a></h5>
-                            <div class="media media-card align-items-center shadow-none p-0 mb-0 rounded-0 mt-4 bg-transparent">
-                                <a href="#" class="media-img media-img--sm d-block mr-2 rounded-full">
-                                    <img src="assets/images/img3.jpg" alt="avatar" class="rounded-full">
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="fs-14 fw-medium">By <a href="#">Tim Brooks</a></h5>
-                                    <small class="meta d-block lh-20">
-                                        <span>Feb 25, 2021</span>
-                                    </small>
-                                </div>
-                            </div>
-                        </div><!-- end card-body -->
-                    </div><!-- end card -->
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-6 responsive-column-half">
-                    <div class="card card-item hover-y">
-                        <a href="singleblog" class="card-img">
-                            <img class="lazy" src="assets/images/img-loading.png" data-src="assets/images/img9.jpg" alt="Card image">
-                        </a>
-                        <div class="card-body pt-0">
-                            <a href="#" class="card-link">Digital design</a>
-                            <h5 class="card-title fw-medium"><a href="singleblog">Designers should always keep their users in mind</a></h5>
-                            <div class="media media-card align-items-center shadow-none p-0 mb-0 rounded-0 mt-4 bg-transparent">
-                                <a href="#" class="media-img media-img--sm d-block mr-2 rounded-full">
-                                    <img src="assets/images/img1.jpg" alt="avatar" class="rounded-full">
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="fs-14 fw-medium">By <a href="#">Arden Smith</a></h5>
-                                    <small class="meta d-block lh-20">
-                                        <span>Feb 25, 2021</span>
-                                    </small>
-                                </div>
-                            </div>
-                        </div><!-- end card-body -->
-                    </div><!-- end card -->
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-6 responsive-column-half">
-                    <div class="card card-item hover-y">
-                        <a href="singleblog" class="card-img">
-                            <img class="lazy" src="assets/images/img-loading.png" data-src="assets/images/img10.jpg" alt="Card image">
-                        </a>
-                        <div class="card-body pt-0">
-                            <a href="#" class="card-link">Project Management</a>
-                            <h5 class="card-title fw-medium"><a href="singleblog">What You Can Learn About Managing Projects</a></h5>
-                            <div class="media media-card align-items-center shadow-none p-0 mb-0 rounded-0 mt-4 bg-transparent">
-                                <a href="#" class="media-img media-img--sm d-block mr-2 rounded-full">
-                                    <img src="assets/images/img2.jpg" alt="avatar" class="rounded-full">
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="fs-14 fw-medium">By <a href="#">Kevin Martin</a></h5>
-                                    <small class="meta d-block lh-20">
-                                        <span>Feb 25, 2021</span>
-                                    </small>
-                                </div>
-                            </div>
-                        </div><!-- end card-body -->
-                    </div><!-- end card -->
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-6 responsive-column-half">
-                    <div class="card card-item hover-y">
-                        <a href="singleblog." class="card-img">
-                            <img class="lazy" src="assets/images/img-loading.png" data-src="assets/images/img11.jpg" alt="Card image">
-                        </a>
-                        <div class="card-body pt-0">
-                            <a href="#" class="card-link">Business</a>
-                            <h5 class="card-title fw-medium"><a href="singleblog">Open space – new trend in office design</a></h5>
-                            <div class="media media-card align-items-center shadow-none p-0 mb-0 rounded-0 mt-4 bg-transparent">
-                                <a href="#" class="media-img media-img--sm d-block mr-2 rounded-full">
-                                    <img src="assets/images/img3.jpg" alt="avatar" class="rounded-full">
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="fs-14 fw-medium">By <a href="#">Tim Brooks</a></h5>
-                                    <small class="meta d-block lh-20">
-                                        <span>Feb 25, 2021</span>
-                                    </small>
-                                </div>
-                            </div>
-                        </div><!-- end card-body -->
-                    </div><!-- end card -->
-                </div><!-- end col-lg-6 -->
+                </div><!-- end col-lg-6 --> --}}
+               
             </div><!-- end row -->
             <div class="pager text-center pt-30px">
                 <nav aria-label="Page navigation example">
@@ -310,4 +201,65 @@
 <!-- ================================
      END BLOG AREA
 ================================= -->
+<script>
+    function showblog()
+  {
+    fetch("http://localhost:8000/api/blogdata").then(response=>response.json()).then((res)=>{
+        console.log(res);
+        blogdata="";
+        count=1;
+        image="";
+        res.forEach(element => {
+        //     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        // var date=new Date(element.created_at);
+        // var today=new Date();
+        
+        // var month=months[date.getMonth()+1];
+        // var day=date.getDate();
+        // var year=date.getFullYear();
+        //     console.log(date);
+            // console.log(month);
+            // console.log(day);
+            // console.log(year);
+            // console.log(today);
+            // if(today.getFullYear()==date.getFullYear()){
+            //     dateweek=Math.ceil((((today.getTime() - date.getTime()) / 86400000) + date.getDay() + 1) / 7);
+            //     todayweek=Math.ceil((((date.getTime() - .getTime()) / 86400000) + janFirst.getDay() + 1) / 7);
+            //     if(today.getWeek()==date.getWeek()){
+            //     console.log(d);
+            //     }
+            // }else{
+            //     console.log(year);
+            // }
+            blogdata +=` <div class="col-lg-6 responsive-column-half">
+                    <div class="card card-item hover-y">
+                        <a href="singleblog" class="card-img">
+                            <img class="lazy" src="storage/${element.image}" data-src="storage/${element.image}" alt="Card image">
+                        </a>
+                        <div class="card-body pt-0">
+                            <a href="#" class="card-link">${element.category}</a>
+                            <h5 class="card-title fw-medium"><a href="singleblog">${element.blog_title}</a></h5>
+                            <div class="media media-card align-items-center shadow-none p-0 mb-0 rounded-0 mt-4 bg-transparent">
+                                <a href="#" class="media-img media-img--sm d-block mr-2 rounded-full">
+                                    <img src="assets/images/img1.jpg" alt="avatar" class="rounded-full">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="fs-14 fw-medium">By <a href="#">${element.user_name}</a></h5>
+                                    <small class="meta d-block lh-20">
+                                        <span></span>
+                                    </small>
+                                </div>
+                            </div>
+                        </div><!-- end card-body -->
+                    </div><!-- end card -->
+                </div><!-- end col-lg-6 -->`;
+                        count++;
+        });
+        document.getElementById('blog-data').innerHTML= blogdata;
+    });
+  }
+  showblog()
+  
+</script>
 @include('layouts.footer')

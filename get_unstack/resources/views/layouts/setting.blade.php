@@ -1,5 +1,13 @@
 @include('layouts.header')
-
+<style>
+    .profile-img {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width: 160px;
+    height: 160px;
+}
+</style>
 <!--======================================
         START HERO AREA
 ======================================-->
@@ -31,9 +39,7 @@
             <li class="nav-item">
                 <a class="nav-link" id="email-settings-tab" data-toggle="tab" href="#email-settings" role="tab" aria-controls="email-settings" aria-selected="false">Email Settings</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="privacy-tab" data-toggle="tab" href="#privacy" role="tab" aria-controls="privacy" aria-selected="false">Privacy</a>
-            </li>
+           
             <li class="nav-item">
                 <a class="nav-link" id="delete-account-tab" data-toggle="tab" href="#delete-account" role="tab" aria-controls="delete-account" aria-selected="false">Delete Account</a>
             </li>
@@ -98,10 +104,10 @@
                                             </div><!-- end col-lg-6 -->
                                             <div class="col-lg-12">
                                                 <div class="input-box">
-                                                    <label class="fs-15 text-black lh-20 fw-medium">About me</label>
-                                                    <p>{{Auth::user()->objective}}</p>
+                                                    <label class="fs-15 text-black lh-20 fw-medium">About me(Objective)</label>
+                                                    {{-- <p>{{Auth::user()->objective}}</p> --}}
                                                     <div class="form-group">
-                                                        <textarea class="form-control form--control user-text-editor" rows="10" cols="40" name="objective" value="{{Auth::user()->objective}}"></textarea>
+                                                        <input class="form-control form--control " rows="3" cols="40" name="objective"  value="{{Auth::user()->objective}}">
                                                     </div>
                                                 </div>
                                             </div><!-- end col-lg-12 -->
@@ -142,7 +148,7 @@
                                                 <div class="input-box">
                                                     <label class="fs-13 text-black lh-20 fw-medium">Instagram link</label>
                                                     <div class="form-group">
-                                                        <input class="form-control form--control pl-40px" type="text" name="instalink" value="{{Auth::user()->insta_link}}">
+                                                        <input class="form-control form--control pl-40px" type="text" name="insta_link" value="{{Auth::user()->insta_link}}">
                                                         <span class="la la-instagram input-icon"></span>
                                                     </div>
                                                 </div>
@@ -151,7 +157,7 @@
                                                 <div class="input-box">
                                                     <label class="fs-13 text-black lh-20 fw-medium">Youtube link</label>
                                                     <div class="form-group">
-                                                        <input class="form-control form--control pl-40px" type="text" name="youtube" value="{{Auth::user()->youtube_link}}">
+                                                        <input class="form-control form--control pl-40px" type="text" name="youtube_link" value="{{Auth::user()->youtube_link}}">
                                                         <span class="la la-youtube input-icon"></span>
                                                     </div>
                                                 </div>
@@ -183,19 +189,21 @@
                                 <div class="bg-gray p-3 rounded-rounded">
                                     <h3 class="fs-17">Change password</h3>
                                 </div>
-                                <form method="post" class="pt-20px">
+                                <form method="post" class="pt-20px" id="passwordform" >
+                                    @csrf
                                     <div class="settings-item mb-30px">
                                         <div class="form-group">
                                             <label class="fs-13 text-black lh-20 fw-medium">Current Password</label>
-                                            <input class="form-control form--control password-field" type="password" name="password" placeholder="Current password">
+                                            <input name="user_id" type="hidden" value="{{Auth::user()->id}}">
+                                            <input class="form-control form--control password-field" type="password" name="current_password" placeholder="Current password">
                                         </div>
                                         <div class="form-group">
                                             <label class="fs-13 text-black lh-20 fw-medium">New Password</label>
-                                            <input class="form-control form--control password-field" type="password" name="password" placeholder="New password">
+                                            <input class="form-control form--control password-field" type="password" name="new_password" placeholder="New password">
                                         </div>
                                         <div class="form-group">
                                             <label class="fs-13 text-black lh-20 fw-medium">New Password (again)</label>
-                                            <input class="form-control form--control password-field" type="password" name="password" placeholder="New password again">
+                                            <input class="form-control form--control password-field" type="password" name="new_confirm" placeholder="New password again">
                                             <p class="fs-14 lh-18 py-2">Passwords must contain at least eight characters, including at least 1 letter and 1 number.</p>
                                             <button class="btn theme-btn-outline theme-btn-outline-gray toggle-password" type="button" data-toggle="tooltip" data-placement="right" title="Show/hide password">
                                                 <svg class="eye-on" xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 0 24 24" width="22px" fill="#7f8897"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7z"/></svg>
@@ -203,7 +211,7 @@
                                             </button>
                                         </div>
                                         <div class="submit-btn-box pt-3">
-                                            <button class="btn theme-btn" type="button">Change Password</button>
+                                            <button class="btn theme-btn" type="submit" onclick="changepassword({{Auth::user()->id}})" >Change Password</button>
                                         </div>
                                     </div><!-- end settings-item -->
                                     <div class="border border-gray p-4">
@@ -369,73 +377,7 @@
                             </div><!-- end user-panel -->
                         </div><!-- end user-panel-main-bar -->
                     </div><!-- end tab-pane -->
-                    <div class="tab-pane fade" id="privacy" role="tabpanel" aria-labelledby="privacy-tab">
-                        <div class="user-panel-main-bar">
-                            <div class="user-panel">
-                                <div class="bg-gray p-3 rounded-rounded">
-                                    <h3 class="fs-17">Privacy Settings</h3>
-                                    <p class="fs-13">Select who may see your profile details</p>
-                                </div>
-                                <form method="post" class="pt-20px">
-                                    <div class="settings-item">
-                                        <div class="input-box">
-                                            <label class="fs-13 text-black lh-20 fw-medium">Profile Picture</label>
-                                            <div class="form-group">
-                                                <select class="custom-select custom--select">
-                                                    <option selected="selected" value="public">Public</option>
-                                                    <option value="followers">Followers</option>
-                                                    <option value="me">Only me</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="input-box">
-                                            <label class="fs-13 text-black lh-20 fw-medium">Email</label>
-                                            <div class="form-group">
-                                                <select class="custom-select custom--select">
-                                                    <option selected="selected" value="public">Public</option>
-                                                    <option value="followers">Followers</option>
-                                                    <option value="me">Only me</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="input-box">
-                                            <label class="fs-13 text-black lh-20 fw-medium">Country</label>
-                                            <div class="form-group">
-                                                <select class="custom-select custom--select">
-                                                    <option selected="selected" value="public">Public</option>
-                                                    <option value="followers">Followers</option>
-                                                    <option value="me">Only me</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="input-box">
-                                            <label class="fs-13 text-black lh-20 fw-medium">Biography</label>
-                                            <div class="form-group">
-                                                <select class="custom-select custom--select">
-                                                    <option selected="selected" value="public">Public</option>
-                                                    <option value="followers">Followers</option>
-                                                    <option value="me">Only me</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="input-box">
-                                            <label class="fs-13 text-black lh-20 fw-medium">Social links</label>
-                                            <div class="form-group">
-                                                <select class="custom-select custom--select">
-                                                    <option selected="selected" value="public">Public</option>
-                                                    <option value="followers">Followers</option>
-                                                    <option value="me">Only me</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="submit-btn-box pt-3">
-                                            <button class="btn theme-btn" type="button">Save changes</button>
-                                        </div>
-                                    </div><!-- end settings-item -->
-                                </form>
-                            </div><!-- end user-panel -->
-                        </div><!-- end user-panel-main-bar -->
-                    </div><!-- end tab-pane -->
+                   
                     <div class="tab-pane fade" id="delete-account" role="tabpanel" aria-labelledby="delete-account-tab">
                         <div class="user-panel-main-bar">
                             <div class="user-panel">
@@ -500,11 +442,11 @@
                     <div class="card card-item p-4">
                         <div class="card-body">
                             <h3 class="fs-17 pb-3">Trending Questions</h3>
-                            <div class="divider"><span></span></div>
+                            {{-- <div class="divider"><span></span></div> --}}
                             <div class="sidebar-questions pt-3">
                                 <div class="media media-card media--card media--card-2">
                                     <div class="media-body">
-                                        <h5><a href="question-details.html">Using web3 to call precompile contract</a></h5>
+                                        <h5><a href="question-details">Using web3 to call precompile contract</a></h5>
                                         <small class="meta">
                                             <span class="pr-1">2 mins ago</span>
                                             <span class="pr-1">. by</span>
@@ -543,5 +485,31 @@
 <!-- ================================
          END USER DETAILS AREA
 ================================= -->
+@push('custom-script')
+    
 
+<script>
+    function changepassword(id){
+        event.preventDefault();     
+        let FormData = $("#passwordform").serializeArray() ;  
+        //console.log(FormData);
+        var result = {};
+        $.each(FormData, function() {
+            result[this.name] = this.value;   
+        });
+        console.log(result);
+        let header_for_post = {
+            method: 'POST', 
+            mode:'cors',
+            headers :{"Content-Type":"application/json",},
+            body: JSON.stringify(result), 
+        }
+        console.log(header_for_post);
+        fetch("http://localhost:8000/api/changepassword", header_for_post).then((res) => res.json()).then((response) => {
+            console.log(response);
+        });
+       
+    }
+</script>
+@endpuch
 @include('layouts.footer')

@@ -66,7 +66,7 @@ class BlogController extends Controller
          //dd($request->all());
          $filename=time()."-blog.".$request->file('image')->getClientOriginalExtension();
          $request->file('image')->storeAs('public/blog-images',$filename);
-         $file="public/blog-images/".$filename;
+         $file="blog-images/".$filename;
          
          $blog->user_id=$request->user_id;
          $blog->user_name=$request->user_name;
@@ -87,7 +87,8 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        //
+        $blogdata=$blog->get();
+        echo $blogdata;
     }
 
     /**

@@ -23,16 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()==null)
-        {
-            
-                return redirect('home');
-            
-        }
-        else
-        {
+       
             $data=Auth::user();
-            //dd($data);
+            dd($data);
             if($data->role_id==1){
                 return redirect('dashboard');
             }
@@ -40,6 +33,6 @@ class HomeController extends Controller
             {
                 return redirect('home');
             }
-        }
+        
     }
 }

@@ -13,7 +13,6 @@
     <!-- Google fonts -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com/"> -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-
     <!-- Favicon -->
     <link rel="icon" sizes="16x16" href="assets/images/favicon.png">
 
@@ -26,7 +25,7 @@
     <link rel="stylesheet" href="assets/css/jquery-te-1.4.0.css">
     <link rel="stylesheet" href="assets/css/selectize.css">
     <!-- end inject -->
-    <script src="lib/jquery.js"></script>
+    <script src="assets/lib/jquery.js"></script>
 	<script defer src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
 
 <style>

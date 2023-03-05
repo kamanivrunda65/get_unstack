@@ -46,6 +46,7 @@ class QuestionController extends Controller
 
      public function store(Question $question,Request $request)
      {
+        //dd($request);
          $request->validate([
             'user_id'=>'required',
              'question'=>'required',

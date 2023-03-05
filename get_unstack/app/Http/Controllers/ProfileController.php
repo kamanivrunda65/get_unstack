@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image ;
+
 class ProfileController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+   
     public function profile()
     {
         return view('layouts.profile');
@@ -44,18 +42,19 @@ class ProfileController extends Controller
             'user_id'=>'required',
              'profile_pic'=>'mimes:jpeg,jpg'
          ]);
-         $image=$request->file('profile_pic');
-         $image_resize = Image::make($image->getRealPath());              
-        $image_resize->resize(300,270);
-         $filename=time()."-profile.".$request->file('profile_pic')->getClientOriginalExtension();
-         $image_resize->storeAs('public/assets/profile_pic',$filename);
-         $file="public/assets/profile_pic/".$filename;
+         
+        
          $user_id=$request->user_id;
          $userbyid=$user->find($user_id);
 
-         //$user->id=$request->user_id;
+         if($request->file('profile_pic')!=null){
+            $filename=time()."-profile.".$request->file('profile_pic')->getClientOriginalExtension();
+            $request->file('profile_pic')->storeAs('public/assets/profile_pic',$filename);
+            $file="public/assets/profile_pic/".$filename;
+            $userbyid->profile_pic=$file;
+           }
          $userbyid->name=$request->name;
-         $userbyid->profile_pic=$file;
+         
          $userbyid->country=$request->country;
          $userbyid->objective=$request->objective;
          $userbyid->web_link=$request->web_link;
@@ -67,5 +66,23 @@ class ProfileController extends Controller
         //  $user->update($userbyid);
         $userbyid->save();
          return redirect('/profile') ;
+    }
+    public function changepassword(Request $request,User $user)
+    {
+        // $id=$request->user_id;
+        // $userbyid1=$user->find($id);
+        // $cpass=Hash::make($request->current_password);
+        // if($userbyid1->password==$cpass){
+        //     echo "success";
+        //     dd($request->all);
+        // }
+        // else{
+        //     echo "fail";
+        //     dd($userbyid1);
+        // }
+        // echo $questionbyid;
+        //dd($userbyid1);
+         dd($request->all());
+        
     }
 }

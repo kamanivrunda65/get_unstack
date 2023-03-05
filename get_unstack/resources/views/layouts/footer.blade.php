@@ -76,7 +76,8 @@
 <script src="assets/js/selectize.min.js"></script>
 
 
-
+@stack('custom-script')
+@method('question-script')
 
 </body>
 

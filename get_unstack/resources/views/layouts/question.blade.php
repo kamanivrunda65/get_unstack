@@ -43,7 +43,8 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="card card-item">
-                <form method="post" class="card-body" id="questionform" route="{{url('/')}}/question">
+                <form method="post" class="card-body" id="questionform" >
+                    {{-- route="{{url('/')}}/question" --}}
                     @csrf                    
                     <div class="input-box">
                         <label class="fs-14 text-black fw-medium mb-0">Question Title</label>
@@ -117,7 +118,7 @@
 
                         </div>
                         <div class="btn-box">
-                            <button type="submit" class="btn theme-btn" >Publish your question</button>
+                            <button type="submit" class="btn theme-btn" onclick="postquestion()">Publish your question</button>
                         </div>
                     </div>
                 </form>
@@ -237,7 +238,8 @@
 <!-- ================================
      END QUESTION AREA
 ================================= -->
-{{-- <script>
+@push('question-script')
+<script>
     function postquestion(){
         event.preventDefault();     
         let FormData = $("#questionform").serializeArray() ;  
@@ -249,21 +251,18 @@
         //console.log(result);
         let header_for_post = {
             method: 'POST', 
-            header:{"Content-type" :"application/json"},
-            body: JSON.stringify(result) 
+            mode:'cors',
+            header:{"Content-type" :"application/json",},
+            body: JSON.stringify(result) ,
         }
-        //console.log(header_for_post);
-         fetch("http://localhost:8000/api/postquestion", header_for_post).then(response => response.json()).then((res) => {
-            console.log(res);
-            // if(res.Code==1){
-                
-            //         window.location.href="http://localhost/Group_project/userstable";
-                
-            //  }else{
-            //          window.location.href="http://localhost/Group_project/edituser";
-            //  }
+        console.log(header_for_post);
+         fetch("http://localhost:8000/api/postquestion",header_for_post).then((res) => res.json()).then((response) => {
+            console.log(response);
+           
          });
+        
     }
-</script> --}}
+</script>
+@endpush
 @include('layouts.footer')
 

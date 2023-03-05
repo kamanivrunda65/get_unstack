@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/questiondata', [App\Http\Controllers\QuestionController::class, 'show']);
+Route::get('/blogdata', [App\Http\Controllers\BlogController::class, 'show']);
 Route::get('/deletequestion/{id}', [App\Http\Controllers\QuestionController::class, 'destroy']);
-Route::get('/postquestion', [App\Http\Controllers\QuestionController::class, 'store']);
-Route::get('/userdata', [App\Http\Controllers\ProfileController::class, 'show']);
+Route::post('/postquestion', [App\Http\Controllers\QuestionController::class, 'store']);
+Route::post('/changepassword', [App\Http\Controllers\ProfileController::class, 'changepassword']);
 
 
 

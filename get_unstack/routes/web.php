@@ -19,13 +19,15 @@ use Illuminate\Support\Facades\Auth;
 // });
 
 Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+if(Auth::user()==null){
+Route::get('/', [App\Http\Controllers\IndexController::class, 'index']);
+}else{
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+}
 Route::get('/home', [App\Http\Controllers\IndexController::class, 'index'])->name('home');
 Route::get('/contact', [App\Http\Controllers\IndexController::class, 'contact'])->name('contact');
 Route::get('/question', [App\Http\Controllers\QuestionController::class, 'index'])->name('askquestion');
-Route::post('/question', [App\Http\Controllers\QuestionController::class, 'store']);
+// Route::post('/question', [App\Http\Controllers\QuestionController::class, 'store']);
 Route::get('/allquestion', [App\Http\Controllers\QuestionController::class, 'allquestion'])->name('allquestion');
 Route::get('/questiondetail', [App\Http\Controllers\QuestionController::class, 'singlequestion'])->name('singlequestion');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
